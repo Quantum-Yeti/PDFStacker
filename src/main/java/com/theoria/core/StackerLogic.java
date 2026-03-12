@@ -1,5 +1,6 @@
 package com.theoria.core;
 
+import com.theoria.utils.CLIFontColors;
 import com.theoria.utils.ErrorMessages;
 import org.apache.pdfbox.multipdf.PDFMergerUtility;
 
@@ -24,14 +25,14 @@ public class StackerLogic {
         if (file.exists() && file.getName().toLowerCase().endsWith(".pdf")) {
             pdfFiles.add(pdfFilePath);
         } else {
-            throw new IllegalArgumentException(ErrorMessages.invalidPDFPath(pdfFilePath)
+            throw new IllegalArgumentException(CLIFontColors.RED + ErrorMessages.invalidPDFPath(pdfFilePath) +  CLIFontColors.RESET
             );
         }
     }
 
     public void removePdfFile(int index) throws Exception {
         if (index < 1 || index > pdfFiles.size()) {
-            throw new Exception(ErrorMessages.invalidPDFIndex() + index);
+            throw new Exception(CLIFontColors.RED + ErrorMessages.invalidPDFIndex() + index + CLIFontColors.RESET);
         }
         pdfFiles.remove(index - 1);
     }
@@ -42,7 +43,7 @@ public class StackerLogic {
 
     public void mergePdfFile(String outputFileName) throws Exception {
         if (pdfFiles.size() < 2) {
-            throw new IllegalArgumentException(ErrorMessages.minimumPDFMerge());
+            throw new IllegalArgumentException(CLIFontColors.RED + ErrorMessages.minimumPDFMerge() + CLIFontColors.RESET);
         }
 
         Scanner scanner = new Scanner(System.in);
@@ -62,7 +63,7 @@ public class StackerLogic {
         if (!mergedDir.exists()) {
             boolean success = mergedDir.mkdirs();
             if (!success) {
-                throw new Exception("Failed to create directory: " + mergedDir.getAbsolutePath());
+                throw new Exception(CLIFontColors.RED + "Failed to create directory: " + mergedDir.getAbsolutePath() + CLIFontColors.RESET);
             }
         }
 
@@ -114,14 +115,14 @@ public class StackerLogic {
 
         File folder = new File(folderPath);
         if (!folder.exists() || !folder.isDirectory()) {
-            System.out.println("Folder does not exist or is not a directory.");
+            System.out.println(CLIFontColors.RED + "Folder does not exist or is not a directory." + CLIFontColors.RESET);
             return;
         }
 
         File[] listOfFiles = folder.listFiles((dir, name) -> name.toLowerCase().endsWith(".pdf"));
 
         if (listOfFiles == null || listOfFiles.length == 0) {
-            System.out.println("No pdfs found in the folder.");
+            System.out.println(CLIFontColors.RED + "No pdfs found in the folder." + CLIFontColors.RESET);
             return;
         }
 
@@ -137,7 +138,7 @@ public class StackerLogic {
                     addPdfFile(pdf.getAbsolutePath());
                     System.out.println("Added: " + pdf.getName());
                 } catch (Exception e) {
-                    System.out.println("Failed to add: " + pdf.getName());
+                    System.out.println(CLIFontColors.RED + "Failed to add: " + pdf.getName() + CLIFontColors.RESET);
                 }
             }
         }
@@ -148,7 +149,7 @@ public class StackerLogic {
         File rootFolder = new File(folderPath);
 
         if (!rootFolder.exists() || !rootFolder.isDirectory()) {
-            System.out.println("Folder does not exist or is not a directory.");
+            System.out.println(CLIFontColors.RED + "Folder does not exist or is not a directory." + CLIFontColors.RESET);
             return pdfFilesFound;
         }
 
@@ -169,6 +170,6 @@ public class StackerLogic {
 
     public void startNew() {
         pdfFiles.clear();
-        System.out.println("PDF stack has been reset. You may start over.");
+        System.out.println(CLIFontColors.YELLOW + "PDF stack has been reset. You may start over." + CLIFontColors.RESET);
     }
 }
