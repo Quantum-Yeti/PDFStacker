@@ -16,6 +16,8 @@ public class CommandRouter {
         register(new MoveCommand());
         register(new ListCommand());
         register(new MergeCommand());
+        register(new ScanFolderCommand());
+        register(new ScanDirectoryCommand());
         register(new ExitCommand());
         register(new HelpCommand());
     }

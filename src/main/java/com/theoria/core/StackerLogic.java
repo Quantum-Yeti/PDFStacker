@@ -18,7 +18,7 @@ public class StackerLogic {
         pdfFiles = new ArrayList<>();
     }
 
-    public void addPdfFile(String pdfFilePath) throws Exception {
+    public void addPdfFile(String pdfFilePath) {
         File file = new File(pdfFilePath);
 
         if (file.exists() && file.getName().toLowerCase().endsWith(".pdf")) {
@@ -104,6 +104,67 @@ public class StackerLogic {
         pdfFiles.add(newIdx, pdf);
 
         return oldIdx < newIdx ? MoveDirection.DOWN : MoveDirection.UP;
+    }
+
+    public void scanFolder() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the folder path to scan for PDFs: ");
+        String folderPath = scanner.nextLine().trim();
+
+        File folder = new File(folderPath);
+        if (!folder.exists() || !folder.isDirectory()) {
+            System.out.println("Folder does not exist or is not a directory.");
+            return;
+        }
+
+        File[] listOfFiles = folder.listFiles((dir, name) -> name.toLowerCase().endsWith(".pdf"));
+
+        if (listOfFiles == null || listOfFiles.length == 0) {
+            System.out.println("No pdfs found in the folder.");
+            return;
+        }
+
+        System.out.println("Found " + listOfFiles.length + " PDFs in the folder.");
+
+        for (File pdf : listOfFiles) {
+            System.out.println(" - " + pdf.getName());
+
+            System.out.println("Add this PDF to the merge stack? (y/n): ");
+            String response  = scanner.nextLine().trim();
+            if (response.equalsIgnoreCase("y") || response.equalsIgnoreCase("yes")) {
+                try {
+                    addPdfFile(pdf.getAbsolutePath());
+                    System.out.println("Added: " + pdf.getName());
+                } catch (Exception e) {
+                    System.out.println("Failed to add: " + pdf.getName());
+                }
+            }
+        }
+    }
+
+    public List<File> scanFolderDirectory(String folderPath) {
+        List<File> pdfFilesFound = new ArrayList<>();
+        File rootFolder = new File(folderPath);
+
+        if (!rootFolder.exists() || !rootFolder.isDirectory()) {
+            System.out.println("Folder does not exist or is not a directory.");
+            return pdfFilesFound;
+        }
+
+        File[] filesInDir = rootFolder.listFiles();
+        if (filesInDir == null) {
+            return pdfFilesFound;
+        }
+
+        for (File file : filesInDir) {
+            if (file.isDirectory()) {
+                pdfFilesFound.addAll(scanFolderDirectory(file.getAbsolutePath()));
+            } else if (file.getName().toLowerCase().endsWith(".pdf")) {
+                pdfFilesFound.add(file);
+            }
+        }
+        return pdfFilesFound;
     }
 
     public void startNew() {
