@@ -4,7 +4,10 @@ import com.theoria.utils.CLIFontColors;
 import com.theoria.utils.ErrorMessages;
 import org.apache.pdfbox.multipdf.PDFMergerUtility;
 
+import java.awt.*;
 import java.io.File;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -171,5 +174,32 @@ public class StackerLogic {
     public void startNew() {
         pdfFiles.clear();
         System.out.println(CLIFontColors.YELLOW + "PDF stack has been reset. You may start over." + CLIFontColors.RESET);
+    }
+
+    public void buyCoffee() {
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("If you found this app helpful, would you like the donate? (y/n) ");
+
+        String response = scanner.nextLine().trim();
+        if (response.equalsIgnoreCase("y") || response.equalsIgnoreCase("yes")) {
+            try {
+                URI uri = new URI("https://ko-fi.com/quantumyeti");
+
+                if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
+                    Desktop.getDesktop().browse(uri);
+                    System.out.println("Opening donation page in your browser...");
+                } else {
+                    System.out.println("Can not open donation page automatically. Please visit: " + uri.toString());
+                }
+
+            } catch (Exception e) {
+                System.out.println("Failed to open donation page in your browser. Please visit: https://ko-fi.com/quantumyeti");
+            }
+        } else {
+            System.out.println("No worries! Thanks for using PDFStackerCLI.");
+        }
+
     }
 }

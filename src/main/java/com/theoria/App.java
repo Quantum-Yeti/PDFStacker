@@ -4,8 +4,7 @@ import com.theoria.cli.StackerCLI;
 import com.theoria.utils.CLILogger;
 
 public class App {
-    public static void main(String[] args) {
-
+    public static void main(String[] args){
         try {
             StackerCLI.run();
         } catch (Exception e) {

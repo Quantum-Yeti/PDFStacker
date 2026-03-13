@@ -20,6 +20,7 @@ public class CommandRouter {
         register(new ScanDirectoryCommand());
         register(new ExitCommand());
         register(new HelpCommand());
+        register(new DonateCommand());
     }
 
     private void register(Commands command) {

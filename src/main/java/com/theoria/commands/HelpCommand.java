@@ -22,7 +22,8 @@ public class HelpCommand implements Commands {
         System.out.println(CLIFontColors.GREEN + "  move          <currentIndex> -> <newIndex> " + CLIFontColors.RESET + "    - Move PDF up in the stack");
         System.out.println(CLIFontColors.GREEN + "  merge         <output.pdf>" + CLIFontColors.RESET + "                     - Merge all PDFs into one file");
         System.out.println(CLIFontColors.GREEN + "  scanf             " + CLIFontColors.RESET + "                             - Scan a folder for PDFs");
-        System.out.println(CLIFontColors.GREEN + "  scanfd             " + CLIFontColors.RESET + "                            - Scan a directory for all PDFs");
+        System.out.println(CLIFontColors.GREEN + "  scanfd             " + CLIFontColors.RESET + "                            - Scan a directory of folders for all PDFs");
+        System.out.println(CLIFontColors.GREEN + "  donate             " + CLIFontColors.RESET + "                            - Donate to support development");
         System.out.println(CLIFontColors.GREEN + "  exit              " + CLIFontColors.RESET + "                             - Exit the application");
         System.out.println(CLIFontColors.CYAN + "=============================================================================================================" + CLIFontColors.RESET);
 
