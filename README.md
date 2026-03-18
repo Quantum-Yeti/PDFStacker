@@ -8,16 +8,16 @@
 
 ## Features & Commands
 ```
-add <filePath>           Add a PDF to the merge list
-list                     List PDFs currently in the merge list
-remove <index>           Remove a PDF by index
-move <from> <to>         Move a PDF to a new position
-merge <output.pdf>       Merge all PDFs into a single file
-startover                Clear the merge list
-scanf                    Scan a folder for PDFs
-scanfd                   Scan a folder and subfolders for PDFs
-help                     Show available commands
-exit                     Exit the application
+  add           <path>                           - Add a PDF file to the list
+  list                                           - Show current PDFs in the list
+  startover                                      - Remove everything and start over
+  remove        <indexNumber>                    - Remove PDF at given position
+  move          <currentIndex> -> <newIndex>     - Move PDF up in the list
+  merge         <output.pdf>                     - Merge all PDFs into one file
+  scanf                                          - Scan a folder for PDFs
+  scanfd                                         - Scan a folder and its subdirectories for all PDFs
+  donate                                         - Donate to support development
+  exit                                           - Exit the application
 ```
 ---
 
