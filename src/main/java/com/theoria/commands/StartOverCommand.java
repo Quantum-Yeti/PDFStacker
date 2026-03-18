@@ -6,7 +6,7 @@ public class StartOverCommand implements Commands {
 
     @Override
     public String cmdName() {
-        return "startOver";
+        return "startover";
     }
 
     @Override

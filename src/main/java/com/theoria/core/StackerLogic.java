@@ -7,7 +7,6 @@ import org.apache.pdfbox.multipdf.PDFMergerUtility;
 import java.awt.*;
 import java.io.File;
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -85,7 +84,7 @@ public class StackerLogic {
         merger.setDestinationFileName(fullOutputPath);
         merger.mergeDocuments(null); // default MemoryUsageSetting
 
-        System.out.println("Merged PDF saved to: " + fullOutputPath);
+        System.out.println("Success! Merged PDF saved to: " + fullOutputPath);
     }
 
     public enum MoveDirection { UP, DOWN, NONE }
