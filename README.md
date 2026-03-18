@@ -12,7 +12,7 @@
   list                                           - Show current PDFs in the list
   startover                                      - Remove everything and start over
   remove        <indexNumber>                    - Remove PDF at given position
-  move          <currentIndex> -> <newIndex>     - Move PDF up in the list
+  move          <currentIndex> -> <newIndex>     - Move a PDF in the list
   merge         <output.pdf>                     - Merge all PDFs into one file
   scanf                                          - Scan a folder for PDFs
   scanfd                                         - Scan a folder and its subdirectories for all PDFs
